@@ -37,7 +37,7 @@ app.use('/api',routes);
 
 //if our app in heroku
 // if (process.env.NODE_ENV === 'production'){
-    app.use(express.static('rickvianapp/build'));
+app.use(express.static('rickvianapp/build'));
 // }
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
