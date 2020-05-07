@@ -24,3 +24,7 @@ yarn-error.log*
 
 node_modules/
 config/default.json
+
+
+/vscode
+/.vscode
