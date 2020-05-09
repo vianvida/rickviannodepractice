@@ -8,7 +8,8 @@ const BlogPostSchema = new Schema({
     data: {
         type: String,
         default : Date.now()
-    }
+    },
+    url: String
 }); 
 
 //Model
