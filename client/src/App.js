@@ -1,31 +1,39 @@
 import React from "react";
 import axios from "axios";
-import "./App.css";
 
+
+//Assets Component imports 
+import ImageCard from "./components/ImageCard";
+
+
+//Route Components Imports
 import Nav from "./NavBar";
 import About from "./About";
 import Shop from "./Shop";
+import Home from "./Home";
 import itemDetail from "./itemdetail";
-
 import Rickvian from "./Rickvian";
-
 import Userpage from "./Userpage";
+import PageManager from "./PageManager";
+
+
+// import BlogPage from "./BlogPage"; bug, later will fix
+
+
+//MOVE ALL ROUTE TO INDEX.JS!
+
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-const Home = () => (
-  <div className="thisishomepage Component">
-    <h1>Homepage thhis is component</h1>
-  </div>
-);
+
 
 class App extends React.Component {
   state = {
     title: "",
     body: "",
     posts: [],
-    url: "",
-    user: ""
+    links: [],
+    user: "",
   };
 
   componentDidMount = () => {
@@ -45,31 +53,8 @@ class App extends React.Component {
       });
   };
 
-  handleChange = ({ target }) => {
-    const { name, value } = target;
-
-    this.setState({ [name]: value });
-  };
-
-  submit = (event) => {
-    event.preventDefault(); // prevent browser from refreshing
-
-    const payload = {
-      title: this.state.title,
-      url: this.state.url,
-    };
-
-    axios({ url: "/api/save", method: "POST", data: payload })
-      .then(() => {
-        console.log("Data has been sent to server");
-        this.resetUserInputs();
-        this.getBlogPost();
-      })
-      .catch(() => {
-        console.log("Internal server error");
-      });
-  };
-
+ 
+ 
   resetUserInputs = () => {
     this.setState({ title: "", body: "" });
   };
@@ -85,82 +70,41 @@ class App extends React.Component {
       </div>
     ));
   };
-  render() {
-    console.log("State: ", this.state);
 
-    // JSX
+
+
+
+  render() {
+    // console.log("State: ", this.state);
+
     return (
       <Router>
         <div className="app">
-          <Nav />
+
+
           <Switch>
             <Route path="/" exact component={Home} />
-           
 
             <Route path="/about" exact component={About} />
+            
+            <Route path="/abou2" exact component={About} />
+            
+            <Route path="/about4" exact component={About} />
+            
+            <Route path="/about5" exact component={About} />
 
             <Route path="/shop" exact component={Shop} />
             <Route path="/rickvian" exact component={Rickvian} />
 
+            <Route path="/manage" component={PageManager} />
+
             <Route path="/shop/:id" component={itemDetail} />
+
+            {/* <Route path="/blog" component={BlogPage} /> */}
+            {/* under construction  */}
+
             <Route path="/:userhandle" component={Userpage} />
-        
-
-            
-            
           </Switch>
-
-          <br />
-          <br />
-          <br />
-          <br />
-
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-
-          <h2>Welcome my practice app</h2>
-          <form onSubmit={this.submit}>
-            <div className="form-input">
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                value={this.state.title}
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="form-input">
-              <input
-                placeholder="link"
-                name="url"
-                cols="30"
-                rows="10"
-                value={this.state.url}
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <button>Submit</button>
-          </form>
-
-          <div className="profile-header">
-            <span>@</span>Rickvian
-            <div>I am web developer</div>
-          </div>
-          <div> {this.displayBlogPost(this.state.posts)} </div>
-
-          <div className="wa-floating-button"></div>
         </div>
       </Router>
     );

@@ -13,10 +13,11 @@ const PORT = process.env.PORT || 8080;
 
 const routes = require('./routes/api');
 
+
 const MONGODB_URI = 'mongodb+srv://rickvian:testinghash@cluster0-aug3g.gcp.mongodb.net/test?retryWrites=true&w=majority'
 const mongolocal = 'mongodb://127.0.0.1:27017/'; //error, later will figure out how to setup database
 
-mongoose.connect(process.env.MONGODB_URI || mongolocal , {
+mongoose.connect(process.env.MONGODB_URI || MONGODB_URI , {
     useNewUrlParser:true,
     useUnifiedTopology: true
 });

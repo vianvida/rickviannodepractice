@@ -1,17 +1,28 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import axios from 'axios';
 import './App.css';
 
-function About(){
-    return (
-        <div>
-            <h1>About page</h1>
 
-            yes whatever bro
+class About extends React.Component {
+    componentDidMount(){
+        
+    }
 
-            thisis about page contents
-        </div>
-    )
+
+    render(){
+        return (
+            <div className="app">
+                <h1>About page</h1>
+    
+                yes whatever bro
+    
+                thisis about page contents
+            </div>
+        )
+    }
 }
+
+
 
 export default About;
