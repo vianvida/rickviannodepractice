@@ -29,6 +29,7 @@ class PageManager extends React.Component {
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
+    // this.setState()
   };
 
   // submit = (event) => {
@@ -62,13 +63,12 @@ class PageManager extends React.Component {
         alert("Error retrieving link data");
       });
 
-
-      
     const userfetchlist = {
       userhandle: "kfc",
       userdescription: "this is KFC description",
       userid: "1233"
     }
+
    this.setState({
       userhandle: userfetchlist.userhandle,
       userid: userfetchlist.userid,
@@ -138,14 +138,19 @@ class PageManager extends React.Component {
         // console.log("Data has been sent to server");
         alert("data sent to server");
         // this.resetUserInputs();
-        this.getLinkList();
+        this.getLinks();
+
       })
       .catch(() => {
         console.log("Internal server error");
       });
   };
 
-  getLinkList = (links) => {
+
+
+
+
+  displayLinks = (links) => {
     if (!links.length) return null;
 
     return links.map((links, index) => (
@@ -156,6 +161,10 @@ class PageManager extends React.Component {
       </div>
     ));
   };
+
+
+
+
 
   render() {
     console.log("State: ", this.state);
@@ -225,7 +234,7 @@ class PageManager extends React.Component {
               <div>
                 Your Current links:
                 <br />
-                {this.getLinkList(this.state.links)}
+                {this.displayLinks(this.state.links)}
               </div>
             </div>
           </div>
